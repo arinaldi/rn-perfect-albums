@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
   button: {
-    marginBottom: 10
+    marginBottom: 20
   },
   saveText: {
     fontWeight: 'bold'

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import { createStackNavigator } from 'react-navigation'
 import { Root, Toast } from 'native-base'
-import * as Expo from 'expo'
+// import * as Expo from 'expo'
 import SignIn from './components/SignIn'
 import Albums from './components/Albums'
 import EditAlbum from './components/EditAlbum'
@@ -39,7 +39,7 @@ export default class App extends Component {
   }
 
   componentWillMount () {
-    this.loadFonts()
+    // this.loadFonts()
   }
 
   async componentDidMount () {
@@ -49,14 +49,14 @@ export default class App extends Component {
     }
   }
 
-  async loadFonts () {
-    await Expo.Font.loadAsync({
-      Roboto: require('native-base/Fonts/Roboto.ttf'),
-      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
-      Ionicons: require('@expo/vector-icons/fonts/Ionicons.ttf')
-    });
-    this.setState({ isReady: true })
-  }
+  // async loadFonts () {
+  //   await Expo.Font.loadAsync({
+  //     Roboto: require('native-base/Fonts/Roboto.ttf'),
+  //     Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+  //     Ionicons: require('@expo/vector-icons/fonts/Ionicons.ttf')
+  //   });
+  //   this.setState({ isReady: true })
+  // }
 
   handleSignIn = (token) => {
     this.setState({
@@ -149,7 +149,7 @@ export default class App extends Component {
   render () {
     const { isReady, isSignedIn, token, filteredData, isLoading, isRefreshing } = this.state
 
-    if (!isReady) return <Expo.AppLoading />
+    // if (!isReady) return <Expo.AppLoading />
     if (!isSignedIn) return <SignIn handleSignIn={this.handleSignIn} />
 
     return (
