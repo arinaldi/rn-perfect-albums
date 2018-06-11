@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Switch, Alert } from 'react-native'
+import { StyleSheet, Switch, Alert, View } from 'react-native'
 import {
   Container,
   Header,
@@ -14,7 +14,8 @@ import {
   Label,
   Input,
   Form,
-  Icon
+  Icon,
+  Footer
 } from 'native-base'
 import { BASE_URL, ERRORS } from '../constants'
 
@@ -120,7 +121,11 @@ export default class EditAlbum extends Component {
           <Body>
             <Title>Edit Album</Title>
           </Body>
-          <Right />
+          <Right>
+            <Button hasText transparent onPress={this.handleEdit}>
+              <Text style={styles.saveText}>Save</Text>
+            </Button>
+          </Right>
         </Header>
         <Content contentContainerStyle={styles.content}>
           <Form>
@@ -152,24 +157,18 @@ export default class EditAlbum extends Component {
                 onValueChange={value => this.handleChange('aotd', value)}
               />
             </Item>
-            <Button
-              block
-              light
-              onPress={this.handleEdit}
-              style={styles.button}
-            >
-              <Text>Save</Text>
-            </Button>
+            <Text style={styles.error}>{error}</Text>
+          </Form>
+          <View style={styles.footer}>
             <Button
               block
               danger
               onPress={this.handleDelete}
               style={styles.button}
             >
-              <Text>Delete</Text>
+              <Text>Delete Album</Text>
             </Button>
-            <Text style={styles.error}>{error}</Text>
-          </Form>
+          </View>
         </Content>
       </Container>
     )
@@ -182,8 +181,15 @@ const styles = StyleSheet.create({
     marginRight: 10,
     flex: 1
   },
+  footer: {
+    flex: 1,
+    justifyContent: 'flex-end'
+  },
   button: {
-    marginTop: 20
+    marginBottom: 10
+  },
+  saveText: {
+    fontWeight: 'bold'
   },
   error: {
     color: 'red',

@@ -67,13 +67,17 @@ export default class AddAlbum extends Component {
     return (
       <Container>
         <Header>
-          <Left />
+          <Left>
+            <Button hasText transparent onPress={() => this.props.navigation.goBack()}>
+              <Text>Cancel</Text>
+            </Button>
+          </Left>
           <Body>
             <Title>Add Album</Title>
           </Body>
           <Right>
-            <Button hasText transparent onPress={() => this.props.navigation.goBack()}>
-              <Text>Cancel</Text>
+            <Button hasText transparent onPress={this.handleSubmit}>
+              <Text style={styles.saveText}>Save</Text>
             </Button>
           </Right>
         </Header>
@@ -108,14 +112,6 @@ export default class AddAlbum extends Component {
                 onValueChange={value => this.handleChange('aotd', value)}
               />
             </Item>
-            <Button
-              block
-              light
-              onPress={this.handleSubmit}
-              style={styles.button}
-            >
-              <Text>Save</Text>
-            </Button>
             <Text style={styles.error}>{error}</Text>
           </Form>
         </Content>
@@ -130,8 +126,8 @@ const styles = StyleSheet.create({
     marginRight: 10,
     flex: 1
   },
-  button: {
-    marginTop: 20
+  saveText: {
+    fontWeight: 'bold'
   },
   error: {
     color: 'red',
