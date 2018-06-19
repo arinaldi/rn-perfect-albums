@@ -14,3 +14,11 @@ export const saveToken = async (token) => {
 export const clearToken = async () => {
   await AsyncStorage.removeItem(KEY)
 }
+
+export const sortByAlbum = (a, b) => {
+  if (a.artist < b.artist) return -1
+  if (a.artist > b.artist) return 1
+  if (a.album < b.album) return -1
+  if (a.album > b.album) return 1
+  return 0 
+}

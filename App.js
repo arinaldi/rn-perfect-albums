@@ -7,8 +7,14 @@ import SignIn from './components/SignIn'
 import Albums from './components/Albums'
 import EditAlbum from './components/EditAlbum'
 import AddAlbum from './components/AddAlbum'
-import { getToken, clearToken } from './utils'
+import { getToken, clearToken, sortByAlbum } from './utils'
 import { BASE_URL, ERRORS } from './constants'
+
+const formatData = (data) => (
+  data
+    .sort(sortByAlbum)
+    .slice(0, 50)
+)
 
 const MainStack = createStackNavigator({
   Albums: { screen: Albums },
@@ -88,7 +94,7 @@ export default class App extends Component {
       .then(data => {
         this.setState({
           data,
-          filteredData: data.slice(0, 50),
+          filteredData: formatData(data),
           isLoading: false,
           isRefreshing: false
         })
@@ -107,7 +113,7 @@ export default class App extends Component {
       item.album.toLowerCase().indexOf(query.toLowerCase()) >= 0
     })
 
-    this.setState({ filteredData: data.slice(0, 50) })
+    this.setState({ filteredData: formatData(data) })
   }
 
   handleAdd = (album) => {
@@ -116,7 +122,7 @@ export default class App extends Component {
 
     this.setState({
       data,
-      filteredData: data.slice(0, 50)
+      filteredData: formatData(data)
     })
   }
 
@@ -132,7 +138,7 @@ export default class App extends Component {
 
     this.setState({
       data,
-      filteredData: data.slice(0, 50)
+      filteredData: formatData(data)
     })
   }
 
@@ -142,7 +148,7 @@ export default class App extends Component {
 
     this.setState({
       data,
-      filteredData: data.slice(0, 50)
+      filteredData: formatData(data)
     })
   }
 
